@@ -19,8 +19,8 @@
 #define BLINK_GPIO GPIO_NUM_5 
 #define BLINK_PERIOD_TASK1 500
 #define BLINK_PERIOD_TASK2 333
-#define LED_OFF 0
-#define LED_ON  1
+#define LED_STATE_ON    1
+#define LED_STATE_OFF   (1-LED_STATE_ON)
 
 static void set_led(uint8_t state)
 {
@@ -37,26 +37,26 @@ static void configure_led(void)
 
 void Task1(void* parameter)
 {
-    static uint8_t led_state = LED_OFF;
+    static uint8_t led_state = LED_STATE_OFF;
 
     while(true)
     {
         set_led(led_state);
         /* Toggle the LED state */
-        led_state = led_state == LED_ON ? LED_OFF : LED_ON;
+        led_state = led_state == LED_STATE_ON ? LED_STATE_OFF : LED_STATE_ON;
         vTaskDelay(BLINK_PERIOD_TASK1 / portTICK_PERIOD_MS);        
     }
 }
 
 void Task2(void* parameter)
 {
-    static uint8_t led_state = LED_OFF;
+    static uint8_t led_state = LED_STATE_OFF;
 
     while(true)
     {
         set_led(led_state);
         /* Toggle the LED state */
-        led_state = led_state == LED_ON ? LED_OFF : LED_ON;
+        led_state = led_state == LED_STATE_ON ? LED_STATE_OFF : LED_STATE_ON;
         vTaskDelay(BLINK_PERIOD_TASK2 / portTICK_PERIOD_MS);        
     }
 }
