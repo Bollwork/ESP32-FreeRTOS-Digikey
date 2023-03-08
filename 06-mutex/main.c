@@ -1,7 +1,10 @@
 /* 
-    Solution to 06 - Mutex
-    A Mutex is used to start a task from main_app and passed a local variable,
-		ensuring that variable is not going out of scope before the task read it.
+    Solution 06 - Mutex
+    
+    Mutexes are synchronization objects.
+    In this sample a task is started from main_app and a local variable is passed.
+    The Mutex is used to ensure that this variable is not going out of scope before the task has read it.
+    
     Introduction to RTOS Part 6 - Mutex | Digi-Key Electronics
     https://youtu.be/I55auRpbiTs
 */
